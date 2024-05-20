@@ -6,6 +6,7 @@ type RecipeModel = {
     name: string
     description: string
     recipeLink?: string
+    imageLink?: string
     complexity: RecipeComplexity | string
 }
 

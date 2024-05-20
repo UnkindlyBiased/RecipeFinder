@@ -1,6 +1,7 @@
 import express from 'express'
 import { config } from 'dotenv'
 import 'reflect-metadata'
+import cors from 'cors'
 
 import AppDataSource from './utils/data/MongoDataSource'
 import RecipeRouter from './src/routers/RecipeRouter'
@@ -13,6 +14,9 @@ const recipeApp = express()
 
 // Middlewares
 recipeApp.use(express.json())
+recipeApp.use(cors({
+    origin: 'http://localhost:5173'
+}))
 
 // Routers
 recipeApp.use('/recipes', RecipeRouter)
