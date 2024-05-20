@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom"
+import AddRecipeButton from "./inner/AddRecipeButton"
 
 function Header(): React.ReactElement {
     return (
@@ -6,7 +7,7 @@ function Header(): React.ReactElement {
             <Link to='/' className="font-medium text-xl cursor-pointer">
                 Recipe Finder
             </Link>
-            <button>Add</button>
+            <AddRecipeButton />
         </header>
     )
 }

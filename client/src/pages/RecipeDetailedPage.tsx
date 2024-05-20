@@ -2,7 +2,6 @@ import { useParams } from "react-router-dom";
 import { useDocumentTitle } from '@uidotdev/usehooks'
 
 import { useGetRecipeByLink } from "../hooks/useRecipes";
-import { Suspense } from "react";
 
 function RecipeDetailedPage() {
     const { link } = useParams()
@@ -19,15 +18,13 @@ function RecipeDetailedPage() {
                     <span className="text-5xl font-bold">{recipe.name}</span>
                     <span>Complexity: {recipe.complexity}</span>
                 </div>
-                <div className="flex flex-col space-y-1">
+                <div className="flex flex-col space-y-1 w-[500px]">
                     <span className="font-bold text-lg">Description</span>
-                    <span>{recipe.description}</span>
+                    <span className="break-all">{recipe.description}</span>
                 </div>
             </div>
             <div>
-                <Suspense>
-                    <img className="w-96 rounded-lg shadow-md" src={recipe.imageLink} />
-                </Suspense>
+                <img className="w-[500px] rounded-lg shadow-md" src={recipe.imageLink} />
             </div>
         </div>
     )
