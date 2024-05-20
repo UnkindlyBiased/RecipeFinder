@@ -5,6 +5,7 @@ import 'reflect-metadata'
 import AppDataSource from './utils/data/MongoDataSource'
 import RecipeRouter from './src/routers/RecipeRouter'
 import { connectToCacheClient } from './utils/data/RedisCacheClient'
+import errorMiddleware from './utils/middlewares/ErrorMiddleware'
 
 config()
 
@@ -15,6 +16,8 @@ recipeApp.use(express.json())
 
 // Routers
 recipeApp.use('/recipes', RecipeRouter)
+
+recipeApp.use(errorMiddleware)
 
 async function startServer() {
     try {

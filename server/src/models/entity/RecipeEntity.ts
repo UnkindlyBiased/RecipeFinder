@@ -1,5 +1,5 @@
 import { Column, Entity, ObjectId, ObjectIdColumn } from 'typeorm'
-import RecipeCompletixy from '../../../utils/types/RecipeComplexity'
+import RecipeComplexity from '../../../utils/enums/RecipeComplexity'
 
 @Entity({ name: 'Recipes' })
 export default class RecipeEntity {
@@ -17,7 +17,7 @@ export default class RecipeEntity {
 
     @Column({
         type: 'enum',
-        enum: RecipeCompletixy
+        enum: RecipeComplexity
     })
-    complexity: RecipeCompletixy
+    complexity: RecipeComplexity | string
 }

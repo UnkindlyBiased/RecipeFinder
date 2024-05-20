@@ -1,9 +1,11 @@
 import RecipeEntity from "../models/entity/RecipeEntity";
 import MongoRecipeRepository from "../repository/impl/MongoRecipeRepository";
 import IRecipeRepostory from "../repository/IRecipeRepository";
-import RecipeCreateDto from "../models/dto/RecipeCreateDto";
+import RecipeInputDto from "../models/dto/RecipeInputDto";
 import RecipeHelper from "../../utils/helpers/RecipeHelper";
 import { cacheClient } from "../../utils/data/RedisCacheClient";
+import RecipeDeleteDto from "../models/dto/RecipeDeleteDto";
+import { ObjectId } from "mongodb";
 
 class RecipeService {
     constructor(private repository: IRecipeRepostory) { }
@@ -25,13 +27,21 @@ class RecipeService {
 
         return recipe
     }
-    async create(input: RecipeCreateDto): Promise<RecipeEntity> {
+    async create(input: RecipeInputDto): Promise<RecipeEntity> {
         input.recipeLink = RecipeHelper.createLink(input.name)
 
         const createdRecipe = await this.repository.create(input)
         await cacheClient.del('recipes')
 
         return createdRecipe
+    }
+    async update(id: ObjectId, input: RecipeInputDto): Promise<void> {
+        await this.repository.update(id, input)
+        await cacheClient.del(`recipe-${input.recipeLink}`)
+    }
+    async delete(data: RecipeDeleteDto): Promise<RecipeEntity> {
+        await cacheClient.del([`recipe-${data.recipeLink}`, 'recipes'])
+        return this.repository.delete(data._id)
     }
 }
 
