@@ -2,6 +2,7 @@ import { Outlet } from "react-router-dom"
 
 import Header from "./header/Header"
 import ContentBox from "../../hoc/ContentBox"
+import { Toaster } from "../ui/toaster"
 
 function Container() {
     return(
@@ -12,6 +13,7 @@ function Container() {
                     <Outlet />
                 </ContentBox>
             </div>
+            <Toaster />
         </div>
     )
 }
