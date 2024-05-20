@@ -14,6 +14,12 @@ class RecipeService {
     async create(input: TRecipeInput) {
         await api.post(this.ENDPOINT_PREFIX, input)
     }
+    async delete(_id: string, recipeLink: string) {
+        await api.delete(this.ENDPOINT_PREFIX, { data: {
+            _id,
+            recipeLink
+        }})
+    }
 }
 
 export default new RecipeService()

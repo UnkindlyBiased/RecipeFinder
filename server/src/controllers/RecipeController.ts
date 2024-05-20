@@ -2,7 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { ObjectId } from "mongodb";
 
 import RecipeService from "../services/RecipeService";
-import { RequestWithBody } from "../../utils/types/DifferentiatedRequests";
+import { RequestWithBody, RequestWithQuery } from "../../utils/types/DifferentiatedRequests";
 import RecipeInputDto from "../models/dto/RecipeInputDto";
 import RecipeDeleteDto from "../models/dto/RecipeDeleteDto";
 
@@ -25,8 +25,9 @@ class RecipeController {
             next(e)
         }
     }
-    async create(req: RequestWithBody<RecipeInputDto>, res: Response, next: NextFunction) {
+    async create(req: Request, res: Response, next: NextFunction) {
         try {
+            console.log(req.body)
             const recipe = await RecipeService.create(req.body)
             return res.status(201).send(recipe)
         } catch(e) {

@@ -37,6 +37,8 @@ class RecipeService {
         return createdRecipe
     }
     async update(id: ObjectId, input: RecipeInputDto): Promise<void> {
+        input.recipeLink = RecipeHelper.createLink(input.name)
+        
         await this.repository.update(id, input)
         await cacheClient.del(`recipe-${input.recipeLink}`)
     }

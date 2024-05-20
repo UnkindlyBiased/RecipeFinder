@@ -33,6 +33,7 @@ function AddRecipeButton(): React.ReactElement {
                         </SelectGroup>
                     </SelectContent>
                 </Select>
+                <Input placeholder="Image link" {...register('imageLink')} />
                 <DialogFooter>
                     <DialogClose onClick={() => createRecipe()}>
                         Add the recipe

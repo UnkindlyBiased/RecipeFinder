@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import TRecipe from "../../../types/recipe/TRecipe";
+import RecipeDelete from "./RecipeDelete";
 
 function Recipe({ recipe }: { recipe: TRecipe }): React.ReactElement {
     return (
@@ -9,6 +10,7 @@ function Recipe({ recipe }: { recipe: TRecipe }): React.ReactElement {
                 {recipe.name}
             </Link>
             <span>Complexity: {recipe.complexity}</span>
+            <RecipeDelete _id={recipe._id} recipeLink={recipe.recipeLink!} />
         </div>
     )
 }
