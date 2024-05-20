@@ -5,8 +5,8 @@ type RecipeModel = {
     _id: ObjectId
     name: string
     description: string
-    recipeLink: string
-    complexity: RecipeComplexity
+    recipeLink?: string
+    complexity: RecipeComplexity | string
 }
 
 export default RecipeModel
