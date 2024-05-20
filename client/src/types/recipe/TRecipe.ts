@@ -5,6 +5,7 @@ type TRecipe = {
     name: string
     description: string
     recipeLink?: string
+    imageLink?: string
     complexity: RecipeComplexity
 }
 

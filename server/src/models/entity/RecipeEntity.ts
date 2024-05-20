@@ -15,6 +15,10 @@ export default class RecipeEntity {
     @Column({ unique: true })
     recipeLink?: string
 
+    // TODO: implement Firebase image storings
+    @Column({ default: '' })
+    imageLink?: string
+
     @Column({
         type: 'enum',
         enum: RecipeComplexity

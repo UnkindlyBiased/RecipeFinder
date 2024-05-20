@@ -5,7 +5,7 @@ import ContentBox from "../../hoc/ContentBox"
 
 function Container() {
     return(
-        <div className="flex flex-col">
+        <div className="flex flex-col font-inter">
             <Header />
             <div>
                 <ContentBox>
